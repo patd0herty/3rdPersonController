@@ -1,13 +1,49 @@
-[gd_scene load_steps=2 format=3 uid="uid://x8b2wwk737ed"]
+[gd_scene load_steps=8 format=3 uid="uid://x8b2wwk737ed"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_7vl7g"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ih5js"]
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4e4tp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_thgq2"]
+
+[sub_resource type="Sky" id="Sky_h0a7o"]
+sky_material = SubResource("ProceduralSkyMaterial_thgq2")
+
+[sub_resource type="Environment" id="Environment_snc5c"]
+background_mode = 2
+sky = SubResource("Sky_h0a7o")
+ambient_light_source = 3
+tonemap_mode = 1
+tonemap_exposure = 1.5
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_rdik2"]
+
 [node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_7vl7g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ih5js")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386349, 1.09934)
-
 [node name="Sprite3D" type="Sprite3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_4e4tp")
+
+[node name="CameraBase" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CameraRotation" type="Node3D" parent="CameraBase"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.930763, 0.365624, 0, -0.365624, 0.930763, 0, 0, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraBase/CameraRotation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+spring_length = 3.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraBase/CameraRotation/SpringArm3D"]
+unique_name_in_owner = true
+environment = SubResource("Environment_snc5c")
+attributes = SubResource("CameraAttributesPractical_rdik2")
+current = true

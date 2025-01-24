@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxm01pt18knx8"]
+
+[ext_resource type="PackedScene" uid="uid://x8b2wwk737ed" path="res://Prefabs/Player.tscn" id="1_crsxn"]
+
+[sub_resource type="Environment" id="Environment_pi8mq"]
+ambient_light_source = 3
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_xhjfb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_havr3"]
+size = Vector3(8, 1, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_miqmh"]
+
+[node name="Level" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pi8mq")
+camera_attributes = SubResource("CameraAttributesPhysical_xhjfb")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_havr3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(8, 0, 0, 0, 1, 0, 0, 0, 8, 0, 0, 0)
+mesh = SubResource("BoxMesh_miqmh")
+
+[node name="Player" parent="." instance=ExtResource("1_crsxn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07081, 0)
+
+[editable path="Player"]
