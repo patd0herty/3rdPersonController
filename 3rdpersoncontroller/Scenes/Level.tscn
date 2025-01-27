@@ -1,16 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxm01pt18knx8"]
+[gd_scene load_steps=11 format=3 uid="uid://cxm01pt18knx8"]
 
+[ext_resource type="Texture2D" uid="uid://b78hnp4rxl4tj" path="res://Assets/Prototype textures/Light/texture_03.png" id="1_1h3qp"]
 [ext_resource type="PackedScene" uid="uid://x8b2wwk737ed" path="res://Prefabs/Player.tscn" id="1_crsxn"]
 
 [sub_resource type="Environment" id="Environment_pi8mq"]
 ambient_light_source = 3
+ambient_light_energy = 5.0
 
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_xhjfb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_havr3"]
-size = Vector3(8, 1, 8)
+size = Vector3(200, 1, 200)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_glekb"]
+albedo_texture = ExtResource("1_1h3qp")
+refraction_enabled = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_miqmh"]
+material = SubResource("ORMMaterial3D_glekb")
+size = Vector3(200, 1, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6dn7e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cnbl2"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0.547377, 0.230293, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p82ke"]
+material = SubResource("StandardMaterial3D_cnbl2")
 
 [node name="Level" type="Node3D"]
 
@@ -18,16 +35,25 @@ size = Vector3(8, 1, 8)
 environment = SubResource("Environment_pi8mq")
 camera_attributes = SubResource("CameraAttributesPhysical_xhjfb")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+[node name="Floor" type="RigidBody3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_havr3")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
-transform = Transform3D(8, 0, 0, 0, 1, 0, 0, 0, 8, 0, 0, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource("BoxMesh_miqmh")
 
 [node name="Player" parent="." instance=ExtResource("1_crsxn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07081, 0)
 
+[node name="Block1" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.17402, 1.56427, -10.7573)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Block1"]
+shape = SubResource("BoxShape3D_6dn7e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Block1"]
+mesh = SubResource("BoxMesh_p82ke")
+
 [editable path="Player"]
+[editable path="Player/Root Scene"]

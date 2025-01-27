@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://x8b2wwk737ed"]
+[gd_scene load_steps=10 format=3 uid="uid://x8b2wwk737ed"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_7vl7g"]
+[ext_resource type="PackedScene" uid="uid://clmj4ihcvefxt" path="res://Assets/Character Animated.glb" id="2_6yvfr"]
+[ext_resource type="Script" path="res://Scripts/Player_Animation.gd" id="3_0ssck"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ih5js"]
+height = 3.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4e4tp"]
 
@@ -23,12 +26,49 @@ tonemap_exposure = 1.5
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_7vl7g")
 
+[node name="Root Scene" parent="." instance=ExtResource("2_6yvfr")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
+script = ExtResource("3_0ssck")
+
+[node name="Skeleton3D" parent="Root Scene/RootNode/CharacterArmature" index="0"]
+bones/1/position = Vector3(0.0017536, 0.000190889, -0.00314161)
+bones/1/rotation = Quaternion(6.55096e-06, 0.702952, 0.711238, 6.43875e-06)
+bones/3/position = Vector3(2.15299e-05, 0.00952148, 0.00177838)
+bones/3/rotation = Quaternion(0.000294013, 1.12296e-07, -6.99065e-08, 1)
+bones/4/position = Vector3(-1.47988e-05, -0.00113079, -0.00115699)
+bones/5/rotation = Quaternion(0.392272, 6.31465e-07, 8.3812e-07, 0.919849)
+bones/6/rotation = Quaternion(-0.0787002, -0.118691, 0.0654192, 0.987643)
+bones/8/rotation = Quaternion(-0.0756968, -8.97352e-05, -1.60978e-05, 0.997131)
+bones/12/rotation = Quaternion(0.596478, 0.421917, 0.624292, -0.276513)
+bones/13/rotation = Quaternion(0.0678466, -0.105974, -0.48094, 0.867677)
+bones/15/rotation = Quaternion(-0.0626413, -0.0188104, -0.00118085, 0.997858)
+bones/18/rotation = Quaternion(-0.171058, 0.0837446, -0.432979, 0.881054)
+bones/19/rotation = Quaternion(-0.0789317, -0.297914, 0.141663, 0.940717)
+bones/21/position = Vector3(-0.00124826, 0.00141485, 0.000118263)
+bones/21/rotation = Quaternion(-0.0372921, 0.0119033, 0.303863, 0.951911)
+bones/22/rotation = Quaternion(0.632917, -0.376116, -0.557266, -0.383937)
+bones/23/rotation = Quaternion(-0.288259, 0.0417878, 0.0237115, 0.956346)
+bones/26/rotation = Quaternion(-0.620148, -0.0852708, -0.0327213, 0.77915)
+bones/28/rotation = Quaternion(-0.171058, -0.0837445, 0.432979, 0.881054)
+bones/31/rotation = Quaternion(0.999348, 0.0161896, -0.017176, 0.0273278)
+bones/32/rotation = Quaternion(0.418799, 0.00381263, 0.00713574, 0.908043)
+bones/34/rotation = Quaternion(0.930347, -0.0115348, 0.024005, 0.365711)
+bones/35/rotation = Quaternion(0.496497, -0.00442121, -0.00677553, 0.868001)
+bones/39/position = Vector3(-0.00172737, 5.00262e-05, 0.0028726)
+bones/39/rotation = Quaternion(-6.79297e-06, 0.702952, 0.711238, -6.11533e-06)
+bones/41/rotation = Quaternion(-3.55272e-15, -5.96047e-07, 1.69407e-21, 1)
+
+[node name="NurbsPath_001" parent="Root Scene/RootNode/CharacterArmature/Skeleton3D" index="0"]
+transform = Transform3D(0.963367, 0.26313, -0.0518291, -0.268181, 0.946317, -0.180452, 0.00156431, 0.187742, 0.982217, 0.000520821, -0.000111319, -0.00236075)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.405, 0)
 shape = SubResource("CapsuleShape3D_ih5js")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_4e4tp")
 
 [node name="CameraBase" type="Node3D" parent="."]
@@ -47,3 +87,5 @@ unique_name_in_owner = true
 environment = SubResource("Environment_snc5c")
 attributes = SubResource("CameraAttributesPractical_rdik2")
 current = true
+
+[editable path="Root Scene"]
