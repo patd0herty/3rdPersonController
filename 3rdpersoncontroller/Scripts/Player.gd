@@ -30,15 +30,14 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		# Clamp vertical velocity so we don't go flying with weird physics collisions
+		#NEED TO FIX #velocity.y = clampf(velocity.y, -20* get_gravity().y, 2* JUMP_VELOCITY)
 		
 	if Input.is_action_pressed("Sprint"):
 		_sprinting = true
-	else:
-		_sprinting = false
-		
-	if _sprinting:
 		_currentSpeed = RUNSPEED
 	else:
+		_sprinting = false
 		_currentSpeed = SPEED
 	
 	# Handle jump.
