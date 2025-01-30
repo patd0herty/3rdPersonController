@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 		_currentSpeed = SPEED
 	
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
@@ -73,7 +73,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_cameraRotation.rotation.x -= event.relative.y * mouse_sensitivity
 		_cameraRotation.rotation.x = clampf(_cameraRotation.rotation.x, -tilt_limit, tilt_limit)
 		
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("Quit"):
 		# Quit the game when we press Escape key
 		get_tree().quit()
 

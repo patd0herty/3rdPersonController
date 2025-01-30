@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cxm01pt18knx8"]
+[gd_scene load_steps=12 format=3 uid="uid://cxm01pt18knx8"]
 
 [ext_resource type="Texture2D" uid="uid://b78hnp4rxl4tj" path="res://Assets/Prototype textures/Light/texture_03.png" id="1_1h3qp"]
 [ext_resource type="PackedScene" uid="uid://x8b2wwk737ed" path="res://Prefabs/Player.tscn" id="1_crsxn"]
+[ext_resource type="Script" path="res://Scripts/C# scripts/Player.cs" id="3_4tvkx"]
 
 [sub_resource type="Environment" id="Environment_pi8mq"]
 ambient_light_source = 3
@@ -45,6 +46,43 @@ mesh = SubResource("BoxMesh_miqmh")
 
 [node name="Player" parent="." instance=ExtResource("1_crsxn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07081, 0)
+script = ExtResource("3_4tvkx")
+_mouseSensitivity = 0.01
+_tiltLimit = 1.309
+
+[node name="Skeleton3D" parent="Player/Root Scene/RootNode/CharacterArmature" index="0"]
+bones/1/position = Vector3(0.000247075, 0.000246632, -0.00346234)
+bones/1/rotation = Quaternion(0.461213, 0.535125, 0.541425, -0.455831)
+bones/3/position = Vector3(2.15297e-05, 0.0103065, 0.00183072)
+bones/3/rotation = Quaternion(-3.88429e-09, 0.380762, 2.27282e-08, 0.924673)
+bones/4/position = Vector3(-1.47988e-05, -0.00113079, -0.00115699)
+bones/5/rotation = Quaternion(0.229693, -0.113559, 0.000459844, 0.966616)
+bones/6/rotation = Quaternion(-0.0672906, -0.0227068, 0.0106737, 0.997418)
+bones/7/rotation = Quaternion(-0.00608862, 0.000716862, 0.0182809, 0.999814)
+bones/8/rotation = Quaternion(0.0326262, -0.244564, 0.0380074, 0.968338)
+bones/12/rotation = Quaternion(0.734523, 0.350036, 0.423507, -0.398237)
+bones/13/rotation = Quaternion(-0.204792, 0.0995946, -0.212156, 0.950332)
+bones/15/rotation = Quaternion(-0.0626413, -0.0188104, -0.00118085, 0.997858)
+bones/18/rotation = Quaternion(-0.171058, 0.0837446, -0.432979, 0.881054)
+bones/19/rotation = Quaternion(-0.0789317, -0.297914, 0.141663, 0.940717)
+bones/21/position = Vector3(-0.00124826, 0.00141485, 0.000118263)
+bones/21/rotation = Quaternion(-0.0372921, 0.0119033, 0.303863, 0.951911)
+bones/22/rotation = Quaternion(0.367147, -0.605164, -0.609161, -0.357634)
+bones/23/rotation = Quaternion(-0.0655271, -0.0242317, 0.51509, 0.854284)
+bones/26/rotation = Quaternion(-0.620148, -0.0852708, -0.0327214, 0.77915)
+bones/28/rotation = Quaternion(-0.171058, -0.0837445, 0.432979, 0.881054)
+bones/31/rotation = Quaternion(0.971279, 0.160552, -0.166519, 0.0557883)
+bones/32/rotation = Quaternion(0.307051, 0.00293077, 0.00754091, 0.951659)
+bones/34/rotation = Quaternion(0.969641, -0.055906, -0.00103808, 0.238053)
+bones/35/rotation = Quaternion(0.422776, -0.00384389, -0.00711895, 0.906198)
+bones/37/position = Vector3(0.00524221, 0.00301322, -0.000300221)
+bones/39/position = Vector3(-0.00238371, 0.000246627, 0.00326722)
+bones/39/rotation = Quaternion(0.264991, 0.652336, 0.660028, -0.261917)
+bones/41/position = Vector3(0.000648152, 0.00342802, 0.00599651)
+bones/41/rotation = Quaternion(-3.55272e-15, -5.96046e-07, 1.69407e-21, 1)
+
+[node name="NurbsPath_001" parent="Player/Root Scene/RootNode/CharacterArmature/Skeleton3D" index="0"]
+transform = Transform3D(0.998309, -0.0134796, -0.0565462, 0.00280015, 0.982766, -0.184835, 0.0580632, 0.184364, 0.981141, 0.000558487, 0.00197577, -0.000736896)
 
 [node name="Block1" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.17402, 1.56427, -10.7573)
