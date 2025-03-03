@@ -59,7 +59,7 @@ bones/39/rotation = Quaternion(0.264991, 0.652336, 0.660028, -0.261917)
 bones/41/position = Vector3(0.000648152, 0.00342802, 0.00599651)
 
 [node name="NurbsPath_001" parent="RootScene/RootNode/CharacterArmature/Skeleton3D" index="0"]
-transform = Transform3D(0.998309, -0.0134796, -0.0565462, 0.00280015, 0.982766, -0.184835, 0.0580632, 0.184364, 0.981141, 0.000558487, 0.00197577, -0.000736896)
+transform = Transform3D(0.998309, -0.0134795, -0.056546, 0.00279992, 0.982766, -0.184836, 0.058063, 0.184365, 0.981141, 0.000558485, 0.00197578, -0.000736862)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.405, 0)
